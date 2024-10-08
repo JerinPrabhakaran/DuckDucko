@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Age Checker</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        input, button { font-size: 18px; padding: 10px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Telegram Account Age Checker</h1>
+    <p>Please enter your account creation date:</p>
+    <input type="date" id="creationDate" />
+    <br/>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateAge() {
+            const dateInput = document.getElementById('creationDate').value;
+            if (!dateInput) {
+                alert('Please enter a date.');
+                return;
+            }
+            const creationDate = new Date(dateInput);
+            const now = new Date();
+            if (creationDate > now) {
+                alert('The date cannot be in the future.');
+                return;
+            }
+            const seconds = Math.floor((now - creationDate) / 1000);
+            document.getElementById('result').innerText = `Your account is approximately ${seconds} seconds old.`;
+        }
+    </script>
+</body>
+</html>
